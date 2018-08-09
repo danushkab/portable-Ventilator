@@ -1,0 +1,31 @@
+#include <CheapStepper.h>
+CheapStepper stepper1 (8, 9, 10, 11);
+CheapStepper stepper2 (8, 9, 10, 11);
+int rr=6;
+ int tv=1500;
+ int steprpm1;
+ float steprpm2;
+ float stepangle;
+ boolean moveClockwise = true;
+
+void setup() {
+ stepangle=tv*0.18;
+ steprpm1=(3*rr)*(tv/2000.00);
+  Serial.begin(9600); 
+  Serial.println("");
+  Serial.println(steprpm1);
+  //Serial.println(steprpm2);
+  stepper1.setRpm(steprpm1);
+  
+
+}
+
+void loop() {
+moveClockwise = true;
+Serial.print(stepper1.getRpm());
+stepper1.moveDegrees (moveClockwise,stepangle);
+moveClockwise = false;
+ stepper1.moveDegrees (moveClockwise,stepangle);
+ delay ((40/rr)*1000);
+
+}
